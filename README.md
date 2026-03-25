@@ -4,7 +4,7 @@ A lightweight CLI to query and tail AWS CloudWatch Logs from your terminal.
 
 ## Requirements
 
-- Node.js 18+
+- Node.js 24+
 - AWS credentials configured (env vars, `~/.aws/credentials`, or IAM role)
 
 ## Installation
@@ -24,6 +24,10 @@ All commands accept global options:
 | `--profile <profile>` | AWS credentials profile |
 
 ---
+
+If installed you can run `cwlogs <params>` as a binary file.  
+Otherwise you can use standard node CLI as in:  
+`npm run cli -- --region eu-west-1 groups`
 
 ### `groups` — List log groups
 

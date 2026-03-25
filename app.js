@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
-import { createClient } from './libs/aws.js'
-import { listGroups } from './commands/groups.js'
-import { listStreams } from './commands/streams.js'
-import { filterLogs, tailLogs } from './commands/logs.js'
+import { createClient } from './src/libs/aws.js'
+import { listGroups } from './src/commands/groups.js'
+import { listStreams } from './src/commands/streams.js'
+import { filterLogs, tailLogs } from './src/commands/logs.js'
 
 const program = new Command()
 
+// help
 program
   .name('cwlogs')
   .description('AWS CloudWatch Logs CLI')
