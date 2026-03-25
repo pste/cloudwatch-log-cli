@@ -31,7 +31,7 @@ program
   .command('streams <logGroup>')
   .description('List log streams in a group')
   .option('--prefix <prefix>', 'Filter by stream name prefix')
-  .option('--limit <n>', 'Max streams to show', '20')
+  .option('--limit <n>', 'Max streams to show')
   .action(async (logGroup, opts) => {
     const client = createClient(program.opts())
     await listStreams(client, logGroup, opts).catch(exit)
@@ -56,7 +56,7 @@ program
 program
   .command('tail <logGroup> <stream>')
   .description('Tail a log stream in real time')
-  .option('--interval <ms>', 'Polling interval in ms', '3000')
+  .option('--interval <ms>', 'Polling interval in ms', 3000)
   .action(async (logGroup, stream, opts) => {
     const client = createClient(program.opts())
     opts.interval = Number(opts.interval)
