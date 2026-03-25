@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander'
-import { createClient } from './aws.js'
+import { createClient } from './libs/aws.js'
 import { listGroups } from './commands/groups.js'
 import { listStreams } from './commands/streams.js'
 import { filterLogs, tailLogs } from './commands/logs.js'
