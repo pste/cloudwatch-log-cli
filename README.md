@@ -29,6 +29,11 @@ All commands accept global options:
 If installed you can run `cwlogs <params>` as a binary file.  
 Otherwise you can use standard node CLI as in:  
 `npm run cli -- --region eu-west-1 groups`
+Or, for a more exhaustive (and realistic) example:  
+```bash
+alias cwlogs='node app.js --profile default --cacerts private/company-ca-cert.crt'
+cwlogs groups | grep eks
+```
 
 ### `groups` — List log groups
 
