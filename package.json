@@ -1,13 +1,14 @@
 {
   "name": "cloudwatch-log-cli",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "CLI to query AWS CloudWatch Logs",
   "type": "module",
   "bin": {
     "cwlogs": "./app.js"
   },
   "scripts": {
-    "cli": "node app.js"
+    "cli": "node app.js",
+    "help": "node app.js"
   },
   "dependencies": {
     "@aws-sdk/client-cloudwatch-logs": "^3.0.0",

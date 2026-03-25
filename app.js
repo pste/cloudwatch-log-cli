@@ -4,6 +4,7 @@ import { createClient } from './src/libs/aws.js'
 import { listGroups } from './src/commands/groups.js'
 import { listStreams } from './src/commands/streams.js'
 import { filterLogs, tailLogs } from './src/commands/logs.js'
+import pkg from './package.json' with { type: 'json' }
 
 const program = new Command()
 
@@ -11,7 +12,8 @@ const program = new Command()
 program
   .name('cwlogs')
   .description('AWS CloudWatch Logs CLI')
-  .version('0.1.0')
+  .version(pkg.version)
+  .helpOption(false)
   .option('--region <region>', 'AWS region')
   .option('--profile <profile>', 'AWS credentials profile')
   .option('--cacerts <path to ca cert>', 'Optional CA to pass to the client')

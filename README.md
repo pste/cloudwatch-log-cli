@@ -14,9 +14,9 @@ npm install
 npm link   # optional, makes `cwlogs` available globally
 ```
 
-Or, without install:  
+Or, without install:
 ```bash
-node app.js --help
+node app.js help
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ All commands accept global options:
 
 If installed you can run `cwlogs <params>` as a binary file.  
 Otherwise you can use standard node CLI as in:  
-`npm run cli -- --region eu-west-1 groups`
+`node app.js --region eu-west-1 groups`
 Or, for a more exhaustive (and realistic) example:  
 ```bash
 alias cwlogs='node app.js --profile default --cacerts private/company-ca-cert.crt'
@@ -63,11 +63,17 @@ cwlogs groups --prefix /aws/lambda
 cwlogs streams <logGroup> [--prefix <prefix>] [--limit <n>]
 ```
 
-Streams are sorted by last event time, most recent first.
+Streams are sorted by last event time, most recent first. Paginates automatically through all results. Press `Ctrl+C` to stop early.
+
+| Option | Description |
+|---|---|
+| `--prefix` | Filter by stream name prefix |
+| `--limit <n>` | Stop after n streams (optional, default: all) |
 
 ```bash
 cwlogs streams /aws/lambda/my-function
 cwlogs streams /aws/lambda/my-function --limit 10
+cwlogs streams /aws/lambda/my-function --prefix 2026/03/25
 ```
 
 ---
@@ -85,11 +91,14 @@ cwlogs logs <logGroup> [options]
 | `--end <time>` | End time — ISO date or epoch ms |
 | `--streams <names>` | Comma-separated stream names to search in |
 | `--limit <n>` | Maximum number of events to fetch |
+| `--usefield <name>` | Print only the given field from JSON log messages (e.g. `--usefield log`) |
+| `--showstream` | Prefix each line with the stream name |
 
 ```bash
 cwlogs logs /aws/lambda/my-function --filter "ERROR"
 cwlogs logs /aws/lambda/my-function --start 2026-03-24 --end 2026-03-25 --limit 500
-cwlogs logs /aws/lambda/my-function --streams stream1,stream2 --filter "timeout" --short
+cwlogs logs /aws/lambda/my-function --streams stream1,stream2 --filter "timeout"
+cwlogs logs /aws/lambda/my-function --usefield log --showstream
 ```
 
 ---
