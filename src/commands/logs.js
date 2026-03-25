@@ -18,7 +18,18 @@ function formatEvent(event, options) {
   const stream = options.showStream && event.logStreamName
     ? chalk.gray('[' + event.logStreamName + '] ')
     : ''
-  const message = event.message?.trimEnd() ?? ''
+  let message = event.message?.trimEnd() ?? ''
+  if (options.usefield) {
+    try {
+      const jsonmsg = JSON.parse(message)
+      if (options.usefield in jsonmsg) {
+        message = message[options.usefield]
+      }
+    }
+    catch (err) {
+      // log error ?
+    }
+  }
 
   return chalk.gray(ts) + '  ' + stream + message
 }
@@ -44,7 +55,7 @@ export async function filterLogs(client, logGroup, options = {}) {
     const response = await client.send(new FilterLogEventsCommand(params))
 
     for (const event of response.events ?? []) {
-      console.log(formatEvent(event, { showStream: true }))
+      console.log(formatEvent(event, { showStream: true, usefield: options.usefield }))
       count++
     }
 

@@ -46,6 +46,7 @@ program
   .option('--end <time>', 'End time (ISO date or epoch ms)')
   .option('--streams <names>', 'Comma-separated stream names')
   .option('--limit <n>', 'Max events to fetch')
+  .option('--usefield <name>', 'Print only the given JSON field (i.e. --usefield log)')
   .action(async (logGroup, opts) => {
     const client = createClient(program.opts())
     if (opts.streams) opts.streams = opts.streams.split(',')
