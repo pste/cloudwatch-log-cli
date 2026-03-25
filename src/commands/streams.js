@@ -7,10 +7,14 @@ export async function listStreams(client, logGroup, options = {}) {
     logGroupName: logGroup,
     orderBy: 'LastEventTime',
     descending: true,
-    limit: options.limit ?? 20,
+    limit: options.limit,
   }
 
-  if (options.prefix) params.logStreamNamePrefix = options.prefix
+  if (options.prefix) {
+    params.logStreamNamePrefix = options.prefix
+    // cannot order by last-event-time if filtered by prefix
+    params.orderBy = undefined
+  }
 
   const response = await client.send(new DescribeLogStreamsCommand(params))
 
