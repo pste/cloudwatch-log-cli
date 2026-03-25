@@ -22,6 +22,7 @@ All commands accept global options:
 |---|---|
 | `--region <region>` | AWS region (defaults to `AWS_DEFAULT_REGION`) |
 | `--profile <profile>` | AWS credentials profile |
+| `--cacerts <path to ca cert>` | Optional CA to pass to the client |
 
 ---
 

@@ -14,6 +14,7 @@ program
   .version('0.1.0')
   .option('--region <region>', 'AWS region')
   .option('--profile <profile>', 'AWS credentials profile')
+  .option('--cacerts <path to ca cert>', 'Optional CA to pass to the client')
 
 // cwlogs groups [--prefix /aws/lambda]
 program
