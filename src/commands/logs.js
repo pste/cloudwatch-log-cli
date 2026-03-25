@@ -23,7 +23,7 @@ function formatEvent(event, options) {
     try {
       const jsonmsg = JSON.parse(message)
       if (options.usefield in jsonmsg) {
-        message = message[options.usefield]
+        message = jsonmsg[options.usefield]
       }
     }
     catch (err) {
@@ -55,7 +55,7 @@ export async function filterLogs(client, logGroup, options = {}) {
     const response = await client.send(new FilterLogEventsCommand(params))
 
     for (const event of response.events ?? []) {
-      console.log(formatEvent(event, { showStream: true, usefield: options.usefield }))
+      console.log(formatEvent(event, { showStream: options.showstream, usefield: options.usefield }))
       count++
     }
 
