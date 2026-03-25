@@ -14,6 +14,11 @@ npm install
 npm link   # optional, makes `cwlogs` available globally
 ```
 
+Or, without install:  
+```bash
+node app.js --help
+```
+
 ## Usage
 
 All commands accept global options:
@@ -84,7 +89,7 @@ cwlogs logs <logGroup> [options]
 ```bash
 cwlogs logs /aws/lambda/my-function --filter "ERROR"
 cwlogs logs /aws/lambda/my-function --start 2026-03-24 --end 2026-03-25 --limit 500
-cwlogs logs /aws/lambda/my-function --streams stream1,stream2 --filter "timeout"
+cwlogs logs /aws/lambda/my-function --streams stream1,stream2 --filter "timeout" --short
 ```
 
 ---
